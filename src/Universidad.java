@@ -17,7 +17,7 @@ public class Universidad {
         this.profesores = new ArrayList<>();
     }
 
-    //Agregar Materias
+    // Agregar Materias
     public void AgregarMateria(int id, String nombre) {
         // Validar que no exista otra Materia con el mismo ID
         if (existeMateriaConId(id)) {
@@ -29,8 +29,7 @@ public class Universidad {
         materias.add(nuevaMateria);
     }
 
-
-    // Si existe la materia 
+    // Si existe la materia
     private boolean existeMateriaConId(int id) {
         for (Materia materia : materias) {
             if (materia.getId() == id) {
@@ -40,19 +39,19 @@ public class Universidad {
         return false;
     }
 
-    //Agregar Alumno
+    // Agregar Alumno
     public void AgregarAlumno(String nombre, String apellido, Integer id, Date fechaNac, Date fechaIngreso) {
         // Validar id único
         if (existeAlumnoConId(id)) {
             System.out.println("Ya existe un alumno con el mismo ID");
-            return; 
+            return;
         }
 
         Alumno nuevoAlumno = new Alumno(nombre, apellido, id, fechaNac, fechaIngreso);
         alumnos.add(nuevoAlumno);
     }
 
-    // Si existe el alumno 
+    // Si existe el alumno
     private boolean existeAlumnoConId(int id) {
         for (Alumno alumno : alumnos) {
             if (alumno.getId() == id) {
@@ -62,20 +61,20 @@ public class Universidad {
         return false;
     }
 
-
-    //Crear ciclo lectivo
-    public void CrearCicloLectivo(int id, String fechaInicio, String fechaFinalizacion, String fechaInicioInscripcion, String fechaFinalizacionInscripcion) {
+    // Crear ciclo lectivo
+    public void CrearCicloLectivo(int id, String fechaInicio, String fechaFinalizacion, String fechaInicioInscripcion,
+            String fechaFinalizacionInscripcion) {
         // Validar ID único
         if (existeCicloLectivoConId(id)) {
             System.out.println("Ya existe un ciclo lectivo con el mismo ID.");
-            return; 
+            return;
         }
 
         CicloLectivo nuevoCiclo = new CicloLectivo(null, null, null, null, null);
         ciclosLectivos.add(nuevoCiclo);
     }
 
-    //Validar si existe el ciclo
+    // Validar si existe el ciclo
     private boolean existeCicloLectivoConId(int id) {
         for (CicloLectivo ciclo : ciclosLectivos) {
             if (ciclo.getId() == id) {
@@ -85,18 +84,38 @@ public class Universidad {
         return false;
     }
 
-   //Crear comision/curso
-   public void CrearComision() {
-    // Crear un nuevo Comision y agregarla a la lista de cursos
-    Comision nuevaComision = new Comision(null, null, null, null);
-    comisiones.add(nuevaComision);
-}
+    // Crear comision
+    public void CrearComision(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
+        // Validar que no exista otra Comisión con los mismos parámetros
+        if (existeComisionConParametros(id, materia, cicloLectivo, turno)) {
+            System.out.println("Ya existe una comisión con la misma materia, ciclo lectivo y turno");
+            return; 
+        }
 
-//Crear docentes
-public void CrearProfesores(int id, String nombre, String apellido, String fechaNacimiento) {
-    // Crear un nuevo Profesor y agregarlo a la lista de docentes
-    Profesor nuevoProfesor = new Profesor(nombre, apellido, null, null);
-    profesores.add(nuevoProfesor);
-}
+        //agregamos la comision
+        Comision nuevaComision = new Comision(id, materia, cicloLectivo, turno);
+        comisiones.add(nuevaComision);
+    }
+
+    // validacion 
+    private boolean existeComisionConParametros(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
+        for (Comision comision : comisiones) {
+            if (comision.getMateria().equals(materia) &&
+                comision.getCicloLectivo().equals(cicloLectivo) &&
+                comision.getTurno().equals(turno)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Crear docentes
+    public void CrearProfesores(int id, String nombre, String apellido, String fechaNacimiento) {
+        // Crear un nuevo Profesor y agregarlo a la lista de docentes
+        Profesor nuevoProfesor = new Profesor(nombre, apellido, null, null);
+        profesores.add(nuevoProfesor);
+    }
+
+
 
 }
