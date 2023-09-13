@@ -92,6 +92,11 @@ public class Universidad {
     comisiones.add(nuevaComision);
 }
 
-
+//Crear docentes
+public void CrearProfesores(int id, String nombre, String apellido, String fechaNacimiento) {
+    // Crear un nuevo Profesor y agregarlo a la lista de docentes
+    Profesor nuevoProfesor = new Profesor(nombre, apellido, null, null);
+    profesores.add(nuevoProfesor);
+}
 
 }
