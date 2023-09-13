@@ -6,8 +6,6 @@ public class Materia {
 	private Integer id;
 	private List<Materia> materiasCorrelativas;
 	
-	
-	
 	public Materia(String nombre, Integer id) {
 		this.nombre = nombre;
 		this.id = id;
