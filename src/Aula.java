@@ -3,7 +3,6 @@ public class Aula {
 	private Integer id;
 	private Integer cantDeAlumnos;
 	
-	
 	public Aula(Integer id, Integer cantDeAlumnos) {
 		this.id = id;
 		this.cantDeAlumnos = cantDeAlumnos;
