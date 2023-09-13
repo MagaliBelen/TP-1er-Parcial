@@ -16,7 +16,7 @@ public class Universidad {
         // Validar que no exista otra Materia con el mismo ID
         if (existeMateriaConId(id)) {
             System.out.println("Ya existe una materia con el mismo ID.");
-            return; // Puedes lanzar una excepción si lo prefieres
+            return;
         }
 
         Materia nuevaMateria = new Materia(nombre, id);
