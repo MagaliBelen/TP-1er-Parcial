@@ -5,22 +5,39 @@ import java.util.List;
 public class Universidad {
     private List<Materia> materias;
     private List<Alumno> alumnos;
+    private List<CicloLectivo> ciclosLectivos;
+    private List<Comision> comisiones;
+    private List<Profesor> docentes;
 
     public Universidad() {
         this.materias = new ArrayList<>();
         this.alumnos = new ArrayList<>();
+        this.ciclosLectivos = new ArrayList<>();
+        this.comisiones = new ArrayList<>();
+        this.docentes = new ArrayList<>();
     }
 
     //Agregar Materias
     public void AgregarMateria(int id, String nombre) {
         // Validar que no exista otra Materia con el mismo ID
         if (existeMateriaConId(id)) {
-            System.out.println("Ya existe una materia con el mismo ID.");
+            System.out.println("Ya existe una materia con el mismo ID");
             return;
         }
 
         Materia nuevaMateria = new Materia(nombre, id);
         materias.add(nuevaMateria);
+    }
+
+
+    // Si existe la materia 
+    private boolean existeMateriaConId(int id) {
+        for (Materia materia : materias) {
+            if (materia.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     //Agregar Alumno
@@ -35,20 +52,33 @@ public class Universidad {
         alumnos.add(nuevoAlumno);
     }
 
-    // Si existe materia 
-    private boolean existeMateriaConId(int id) {
-        for (Materia materia : materias) {
-            if (materia.getId() == id) {
+    // Si existe el alumno 
+    private boolean existeAlumnoConId(int id) {
+        for (Alumno alumno : alumnos) {
+            if (alumno.getId() == id) {
                 return true;
             }
         }
         return false;
     }
 
-    // Si existe alumno 
-    private boolean existeAlumnoConId(int id) {
-        for (Alumno alumno : alumnos) {
-            if (alumno.getId() == id) {
+
+    //Crear ciclo lectivo
+    public void CrearCicloLectivo(int id, String fechaInicio, String fechaFinalizacion, String fechaInicioInscripcion, String fechaFinalizacionInscripcion) {
+        // Validar ID único
+        if (existeCicloLectivoConId(id)) {
+            System.out.println("Ya existe un ciclo lectivo con el mismo ID.");
+            return; // Puedes lanzar una excepción si lo prefieres
+        }
+
+        CicloLectivo nuevoCiclo = new CicloLectivo(null, null, null, null, null);
+        ciclosLectivos.add(nuevoCiclo);
+    }
+
+    //Validar si existe el ciclo
+    private boolean existeCicloLectivoConId(int id) {
+        for (CicloLectivo ciclo : ciclosLectivos) {
+            if (ciclo.getId() == id) {
                 return true;
             }
         }
