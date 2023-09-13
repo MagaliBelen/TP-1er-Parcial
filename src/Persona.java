@@ -6,7 +6,6 @@ public class Persona {
     private Integer id;
     private Date fechaNac;
     
-    
 	public Persona(String nombre, String apellido, Integer id, Date fechaNac) {
 		this.nombre = nombre;
 		this.apellido = apellido;
