@@ -6,6 +6,14 @@ public class Comision {
 	private CicloLectivo cicloLectivo;
 	private EnumTurno turno;
 	
+	
+	public Comision(Integer id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
+		this.id = id;
+		this.materia = materia;
+		this.cicloLectivo = cicloLectivo;
+		this.turno = turno;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
