@@ -17,7 +17,6 @@ public class CicloLectivo {
 		this.fechaFinalizacionInscripcion = fechaFinalizacionInscripcion;
 	}
 	
-	
 	public Integer getId() {
 		return Id;
 	}
