@@ -7,14 +7,14 @@ public class Universidad {
     private List<Alumno> alumnos;
     private List<CicloLectivo> ciclosLectivos;
     private List<Comision> comisiones;
-    private List<Profesor> docentes;
+    private List<Profesor> profesores;
 
     public Universidad() {
         this.materias = new ArrayList<>();
         this.alumnos = new ArrayList<>();
         this.ciclosLectivos = new ArrayList<>();
         this.comisiones = new ArrayList<>();
-        this.docentes = new ArrayList<>();
+        this.profesores = new ArrayList<>();
     }
 
     //Agregar Materias
@@ -68,7 +68,7 @@ public class Universidad {
         // Validar ID único
         if (existeCicloLectivoConId(id)) {
             System.out.println("Ya existe un ciclo lectivo con el mismo ID.");
-            return; // Puedes lanzar una excepción si lo prefieres
+            return; 
         }
 
         CicloLectivo nuevoCiclo = new CicloLectivo(null, null, null, null, null);
@@ -85,5 +85,13 @@ public class Universidad {
         return false;
     }
 
-   
+   //Crear comision/curso
+   public void CrearComision() {
+    // Crear un nuevo Comision y agregarla a la lista de cursos
+    Comision nuevaComision = new Comision(null, null, null, null);
+    comisiones.add(nuevaComision);
+}
+
+
+
 }
