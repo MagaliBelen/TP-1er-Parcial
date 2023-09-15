@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Universidad {
@@ -40,7 +40,7 @@ public class Universidad {
     }
 
     // Agregar Alumno
-    public void AgregarAlumno(String nombre, String apellido, Integer id, Date fechaNac, Date fechaIngreso) {
+    public void AgregarAlumno(String nombre, String apellido, Integer id, LocalDate fechaNac, LocalDate fechaIngreso) {
         // Validar id único
         if (existeAlumnoConId(id)) {
             System.out.println("Ya existe un alumno con el mismo ID");

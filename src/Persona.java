@@ -1,12 +1,12 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Persona {
 	private String nombre;
     private String apellido;
     private Integer id;
-    private Date fechaNac;
+    private LocalDate fechaNac;
     
-	public Persona(String nombre, String apellido, Integer id, Date fechaNac) {
+	public Persona(String nombre, String apellido, Integer id, LocalDate fechaNac) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.id = id;
@@ -24,10 +24,10 @@ public class Persona {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public Date getFechaNac() {
+	public LocalDate getFechaNac() {
 		return fechaNac;
 	}
-	public void setFechaNac(Date fechaNac) {
+	public void setFechaNac(LocalDate fechaNac) {
 		this.fechaNac = fechaNac;
 	}
 	public Integer getId() {

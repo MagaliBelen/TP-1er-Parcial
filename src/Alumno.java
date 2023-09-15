@@ -1,19 +1,19 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Alumno extends Persona{
 	
-	private Date fechaIngreso;
+	private LocalDate fechaIngreso;
 
-	public Alumno(String nombre, String apellido, Integer id, Date fechaNac, Date fechaIngreso) {
+	public Alumno(String nombre, String apellido, Integer id, LocalDate fechaNac, LocalDate fechaIngreso) {
 		super(nombre, apellido, id, fechaNac);
 		this.fechaIngreso=fechaIngreso;
 	}
 
-	public Date getFechaIngreso() {
+	public LocalDate getFechaIngreso() {
 		return fechaIngreso;
 	}
 
-	public void setFechaIngreso(Date fechaIngreso) {
+	public void setFechaIngreso(LocalDate fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
 

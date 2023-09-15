@@ -13,7 +13,6 @@ public class Materia {
 	}
 	
 	
-	
 	public String getNombre() {
 		return nombre;
 	}
