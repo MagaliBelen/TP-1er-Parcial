@@ -147,7 +147,7 @@ public class Universidad {
 
     // Inscribir alumno
     // Verificar que el alumno y el curso este dado de alta
-   /*  public boolean inscribirAlumnoACurso(Integer id, Integer codigoCurso) {
+    public boolean inscribirAlumnoACurso(Integer id, Integer codigoCurso) {
         Alumno aluEncontrado = obtenerAlumno(id);
         if (aluEncontrado == null) {
             System.out.println("No existe el alumno!");
@@ -169,66 +169,7 @@ public class Universidad {
     private Curso obtenerCurso(Integer codigoCurso) {
         throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
                                                                        // Tools | Templates.
-    }*/
-
-    public void InscribirAlumnoACurso(int dni, int codigoCurso) {
-        // Buscar al alumno y el curso correspondientes
-        Alumno alumno = buscarAlumnoPorDNI(dni);
-        Curso curso = buscarCursoPorCodigo(codigoCurso);
-
-        if (alumno == null || curso == null) {
-            System.out.println("El alumno y/o el curso no existen.");
-            return; 
-        }
-
-        // Verificar si el alumno tiene al menos cursadas todas las correlativas con nota >= 4
-        if (!alumno.tieneCursadasAprobadas(curso.getMateria())) {
-            System.out.println("El alumno no tiene al menos cursadas todas las correlativas con nota >= 4.");
-            return; // Puedes lanzar una excepción si lo prefieres
-        }
-
-        // Verificar si la inscripción está dentro de las fechas de inscripción
-        if (!curso.estaDentroDelPeriodoDeInscripcion()) {
-            System.out.println("La inscripción no se puede realizar fuera de fecha.");
-            return; // Puedes lanzar una excepción si lo prefieres
-        }
-
-        // Verificar si el aula tiene capacidad para el alumno
-        if (!curso.tieneCapacidadDisponible()) {
-            System.out.println("El aula no tiene capacidad para el alumno.");
-            return; // Puedes lanzar una excepción si lo prefieres
-        }
-
-        // Verificar si el alumno está inscrito a otro curso para el mismo día y turno
-        if (alumno.estaInscritoEnOtroCursoParaElMismoDiaYTurno(curso)) {
-            System.out.println("El alumno ya está inscrito en otro curso para el mismo día y turno.");
-            return; // Puedes lanzar una excepción si lo prefieres
-        }
-
-        // Realizar la inscripción
-        curso.inscribirAlumno(alumno);
-        System.out.println("El alumno ha sido inscrito en el curso correctamente.");
     }
 
-    // Buscar alumno por dni
-
-    private Alumno buscarAlumnoPorDNI(int dni) {
-        for (Alumno alumno : alumnos) {
-            if (alumno.getDni() == dni) {
-                return alumno;
-            }
-        }
-        return null;
-    }
-
-    //Buscar curso por id
-    private Curso buscarCursoPorCodigo(int codigoCurso) {
-        for (Curso curso : Cursoes) {
-            if (curso.getId() == codigoCurso) {
-                return curso;
-            }
-        }
-        return null;
-    }
-
+    
 }
