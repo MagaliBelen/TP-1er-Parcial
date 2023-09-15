@@ -40,7 +40,8 @@ public class Universidad {
     }
 
     // Agregar Alumno
-    public void AgregarAlumno(String nombre, String apellido, Integer id, LocalDate fechaNac, LocalDate fechaIngreso, Integer dni) {
+    public void AgregarAlumno(String nombre, String apellido, Integer id, LocalDate fechaNac, LocalDate fechaIngreso,
+            Integer dni) {
         // Validar id único
         if (existeAlumnoConId(id)) {
             System.out.println("Ya existe un alumno con el mismo ID");
@@ -89,20 +90,20 @@ public class Universidad {
         // Validar que no exista otra Comisión con los mismos parámetros
         if (existeComisionConParametros(id, materia, cicloLectivo, turno)) {
             System.out.println("Ya existe una comisión con la misma materia, ciclo lectivo y turno");
-            return; 
+            return;
         }
 
-        //agregamos la comision
+        // agregamos la comision
         Comision nuevaComision = new Comision(id, materia, cicloLectivo, turno);
         comisiones.add(nuevaComision);
     }
 
-    // validacion 
+    // validacion
     private boolean existeComisionConParametros(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
         for (Comision comision : comisiones) {
             if (comision.getMateria().equals(materia) &&
-                comision.getCicloLectivo().equals(cicloLectivo) &&
-                comision.getTurno().equals(turno)) {
+                    comision.getCicloLectivo().equals(cicloLectivo) &&
+                    comision.getTurno().equals(turno)) {
                 return true;
             }
         }
@@ -116,6 +117,58 @@ public class Universidad {
         profesores.add(nuevoProfesor);
     }
 
+    // Agregamos correlativas
+    public boolean agregarCorrelativa(Materia m, Materia corr) {
+        if (m.getId().equals(corr.getId())) {
+            System.out.println("Una materia no puede ser correlativa de la misma materia");
+            return false;
+        }
+        if (m.existeCorrelativa(corr.getId())) {
+            System.out.println("Ya existe esa materia como correlativa");
+            return false;
+        }
+        System.out.println("Agregando correlativa");
+        return m.agregarCorrelativa(corr);
+    }
 
+    // Eliminamos la correlativa
+    public boolean eliminarCorrelativa(Materia m, Integer idMateriaEliminar) {
+        if (m.getId().equals(idMateriaEliminar)) {
+            System.out.println("Una materia no puede ser correlativa de la misma materia");
+            return false;
+        }
+        if (!m.existeCorrelativa(idMateriaEliminar)) {
+            System.out.println("No existe esa materia como correlativa");
+            return false;
+        }
+        System.out.println("Eliminando correlativa");
+        return m.eliminarCorrelativa(idMateriaEliminar);
+    }
+
+    // Inscribir alumno
+    // Verificar que el alumno y el curso este dado de alta
+    public boolean inscribirAlumnoACurso(Integer id, Integer codigoCurso) {
+        Alumno aluEncontrado = obtenerAlumno(id);
+        if (aluEncontrado == null) {
+            System.out.println("No existe el alumno!");
+            return false;
+        }
+        Comision comEncontrada = obtenerComision(codigoCurso);
+        if (comEncontrada == null) {
+            System.out.println("No existe la comision");
+        }
+
+        return true;
+    }
+
+    private Alumno obtenerAlumno(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
+                                                                       // Tools | Templates.
+    }
+
+    private Comision obtenerComision(Integer codigoCurso) {
+        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
+                                                                       // Tools | Templates.
+    }
 
 }
