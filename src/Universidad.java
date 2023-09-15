@@ -153,11 +153,11 @@ public class Universidad {
             System.out.println("No existe el alumno!");
             return false;
         }
-        Curso comEncontrada = obtenerCurso(codigoCurso);
-        if (comEncontrada == null) {
-            System.out.println("No existe la Curso");
+        Curso cursoEncontrado = obtenerCurso(codigoCurso);
+        if (cursoEncontrado == null) {
+            System.out.println("No existe el Curso");
         }
-
+        
         return true;
     }
 

@@ -41,6 +41,18 @@ public class Materia {
         return false;
     }
 	
+
+	public void agregarNota(Nota nota) {
+        notas.add(nota);
+    }
+
+    public List<Nota> obtenerNotas() {
+        return notas;
+    }
+
+
+
+
 	public String getNombre() {
 		return nombre;
 	}
