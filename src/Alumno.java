@@ -17,6 +17,50 @@ public class Alumno extends Persona{
 		materias = new ArrayList<Materia>();
 	}
 
+
+	public void agregarMateria(String nombre) {
+        Materia materia = new Materia(nombre, dni);
+        materias.add(materia);
+    }
+
+    public void agregarNota(String nombreMateria, double nota) {
+        for (Materia materia : materias) {
+            if (materia.getNombre().equals(nombreMateria)) {
+                materia.agregarNota(nota);
+                if (nota >= 4.0) {
+                    materias.add(materia);
+                }
+                break;
+            }
+        }
+    }
+
+    public boolean tieneCorrelativasAprobadas(List<String> correlativas) {
+        for (String correlativa : correlativas) {
+            boolean aprobada = false;
+            for (Materia materia : materias) {
+                if (materia.getNombre().equals(correlativa)) {
+                    aprobada = true;
+                    break;
+                }
+            }
+            if (!aprobada) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+
+
+
+
+
+
+
+
 	public LocalDate getFechaIngreso() {
 		return fechaIngreso;
 	}
