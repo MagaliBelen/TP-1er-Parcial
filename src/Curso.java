@@ -1,5 +1,5 @@
 
-public class Comision {
+public class Curso {
 	
 	private Integer id;
 	private Materia materia;
@@ -7,7 +7,7 @@ public class Comision {
 	private EnumTurno turno;
 	
 	
-	public Comision(Integer id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
+	public Curso(Integer id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
 		this.id = id;
 		this.materia = materia;
 		this.cicloLectivo = cicloLectivo;
@@ -37,5 +37,16 @@ public class Comision {
 	}
 	public void setTurno(EnumTurno turno) {
 		this.turno = turno;
-	} 
+	}
+
+    public boolean estaDentroDelPeriodoDeInscripcion() {
+        return false;
+    }
+
+    public boolean tieneCapacidadDisponible() {
+        return false;
+    }
+
+    public void inscribirAlumno(Alumno alumno) {
+    } 
 }

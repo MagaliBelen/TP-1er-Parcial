@@ -6,14 +6,14 @@ public class Universidad {
     private List<Materia> materias;
     private List<Alumno> alumnos;
     private List<CicloLectivo> ciclosLectivos;
-    private List<Comision> comisiones;
+    private List<Curso> Cursoes;
     private List<Profesor> profesores;
 
     public Universidad() {
         this.materias = new ArrayList<>();
         this.alumnos = new ArrayList<>();
         this.ciclosLectivos = new ArrayList<>();
-        this.comisiones = new ArrayList<>();
+        this.Cursoes = new ArrayList<>();
         this.profesores = new ArrayList<>();
     }
 
@@ -85,25 +85,25 @@ public class Universidad {
         return false;
     }
 
-    // Crear comision
-    public void CrearComision(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
+    // Crear Curso
+    public void CrearCurso(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
         // Validar que no exista otra Comisión con los mismos parámetros
-        if (existeComisionConParametros(id, materia, cicloLectivo, turno)) {
+        if (existeCursoConParametros(id, materia, cicloLectivo, turno)) {
             System.out.println("Ya existe una comisión con la misma materia, ciclo lectivo y turno");
             return;
         }
 
-        // agregamos la comision
-        Comision nuevaComision = new Comision(id, materia, cicloLectivo, turno);
-        comisiones.add(nuevaComision);
+        // agregamos la Curso
+        Curso nuevaCurso = new Curso(id, materia, cicloLectivo, turno);
+        Cursoes.add(nuevaCurso);
     }
 
     // validacion
-    private boolean existeComisionConParametros(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
-        for (Comision comision : comisiones) {
-            if (comision.getMateria().equals(materia) &&
-                    comision.getCicloLectivo().equals(cicloLectivo) &&
-                    comision.getTurno().equals(turno)) {
+    private boolean existeCursoConParametros(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
+        for (Curso Curso : Cursoes) {
+            if (Curso.getMateria().equals(materia) &&
+                    Curso.getCicloLectivo().equals(cicloLectivo) &&
+                    Curso.getTurno().equals(turno)) {
                 return true;
             }
         }
@@ -147,15 +147,15 @@ public class Universidad {
 
     // Inscribir alumno
     // Verificar que el alumno y el curso este dado de alta
-    public boolean inscribirAlumnoACurso(Integer id, Integer codigoCurso) {
+   /*  public boolean inscribirAlumnoACurso(Integer id, Integer codigoCurso) {
         Alumno aluEncontrado = obtenerAlumno(id);
         if (aluEncontrado == null) {
             System.out.println("No existe el alumno!");
             return false;
         }
-        Comision comEncontrada = obtenerComision(codigoCurso);
+        Curso comEncontrada = obtenerCurso(codigoCurso);
         if (comEncontrada == null) {
-            System.out.println("No existe la comision");
+            System.out.println("No existe la Curso");
         }
 
         return true;
@@ -166,9 +166,69 @@ public class Universidad {
                                                                        // Tools | Templates.
     }
 
-    private Comision obtenerComision(Integer codigoCurso) {
+    private Curso obtenerCurso(Integer codigoCurso) {
         throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
                                                                        // Tools | Templates.
+    }*/
+
+    public void InscribirAlumnoACurso(int dni, int codigoCurso) {
+        // Buscar al alumno y el curso correspondientes
+        Alumno alumno = buscarAlumnoPorDNI(dni);
+        Curso curso = buscarCursoPorCodigo(codigoCurso);
+
+        if (alumno == null || curso == null) {
+            System.out.println("El alumno y/o el curso no existen.");
+            return; 
+        }
+
+        // Verificar si el alumno tiene al menos cursadas todas las correlativas con nota >= 4
+        if (!alumno.tieneCursadasAprobadas(curso.getMateria())) {
+            System.out.println("El alumno no tiene al menos cursadas todas las correlativas con nota >= 4.");
+            return; // Puedes lanzar una excepción si lo prefieres
+        }
+
+        // Verificar si la inscripción está dentro de las fechas de inscripción
+        if (!curso.estaDentroDelPeriodoDeInscripcion()) {
+            System.out.println("La inscripción no se puede realizar fuera de fecha.");
+            return; // Puedes lanzar una excepción si lo prefieres
+        }
+
+        // Verificar si el aula tiene capacidad para el alumno
+        if (!curso.tieneCapacidadDisponible()) {
+            System.out.println("El aula no tiene capacidad para el alumno.");
+            return; // Puedes lanzar una excepción si lo prefieres
+        }
+
+        // Verificar si el alumno está inscrito a otro curso para el mismo día y turno
+        if (alumno.estaInscritoEnOtroCursoParaElMismoDiaYTurno(curso)) {
+            System.out.println("El alumno ya está inscrito en otro curso para el mismo día y turno.");
+            return; // Puedes lanzar una excepción si lo prefieres
+        }
+
+        // Realizar la inscripción
+        curso.inscribirAlumno(alumno);
+        System.out.println("El alumno ha sido inscrito en el curso correctamente.");
+    }
+
+    // Buscar alumno por dni
+
+    private Alumno buscarAlumnoPorDNI(int dni) {
+        for (Alumno alumno : alumnos) {
+            if (alumno.getDni() == dni) {
+                return alumno;
+            }
+        }
+        return null;
+    }
+
+    //Buscar curso por id
+    private Curso buscarCursoPorCodigo(int codigoCurso) {
+        for (Curso curso : Cursoes) {
+            if (curso.getId() == codigoCurso) {
+                return curso;
+            }
+        }
+        return null;
     }
 
 }
