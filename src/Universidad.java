@@ -40,14 +40,14 @@ public class Universidad {
     }
 
     // Agregar Alumno
-    public void AgregarAlumno(String nombre, String apellido, Integer id, LocalDate fechaNac, LocalDate fechaIngreso) {
+    public void AgregarAlumno(String nombre, String apellido, Integer id, LocalDate fechaNac, LocalDate fechaIngreso, Integer dni) {
         // Validar id único
         if (existeAlumnoConId(id)) {
             System.out.println("Ya existe un alumno con el mismo ID");
             return;
         }
 
-        Alumno nuevoAlumno = new Alumno(nombre, apellido, id, fechaNac, fechaIngreso);
+        Alumno nuevoAlumno = new Alumno(nombre, apellido, id, fechaNac, fechaIngreso, dni);
         alumnos.add(nuevoAlumno);
     }
 
