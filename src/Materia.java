@@ -5,11 +5,13 @@ public class Materia {
 	private String nombre;
 	private Integer id;
 	private List<Materia> materiasCorrelativas;
+	private List<Nota> notas;
 	
 	public Materia(String nombre, Integer id) {
 		this.nombre = nombre;
 		this.id = id;
 		materiasCorrelativas = new ArrayList<Materia>();
+		notas = new ArrayList<Nota>();
 	}
 	
 	public boolean agregarCorrelativa(Materia materia) {
@@ -56,6 +58,14 @@ public class Materia {
 	}
 	public void setMateriasCorrelativas(List<Materia> materiasCorrelativas) {
 		this.materiasCorrelativas = materiasCorrelativas;
+	}
+
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
 	}
 
   

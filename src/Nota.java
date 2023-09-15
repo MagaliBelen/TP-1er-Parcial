@@ -2,7 +2,6 @@
 public class Nota {
     private EnumNotas tipoDeNota;
     private Double clasificacion;
-    private Materia materia;
     
     public EnumNotas getTipoDeNota() {
         return tipoDeNota;
@@ -16,16 +15,11 @@ public class Nota {
     public void setClasificacion(Double clasificacion) {
         this.clasificacion = clasificacion;
     }
-    public Materia getMateria() {
-        return materia;
-    }
-    public void setMateria(Materia materia) {
-        this.materia = materia;
-    }
-    public Nota(EnumNotas tipoDeNota, Double clasificacion, Materia materia) {
+    
+    public Nota(EnumNotas tipoDeNota, Double clasificacion) {
         this.tipoDeNota = tipoDeNota;
         this.clasificacion = clasificacion;
-        this.materia = materia;
+        
     }
 
 
