@@ -14,6 +14,17 @@ public class Curso {
 		this.turno = turno;
 	}
 	
+	public boolean puedeInscribir(Alumno alumno) {
+        LocalDate fechaActual = LocalDate.now();
+
+        if (fechaActual.isAfter(fechaInicioInscripcion) && fechaActual.isBefore(fechaFinalizacionInscripcion)) {
+            return alumno.tieneCorrelativasAprobadas(List<String> correlativas);
+        } else {
+            return false;
+        }
+    }
+
+
 	public Integer getId() {
 		return id;
 	}

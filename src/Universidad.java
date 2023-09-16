@@ -95,12 +95,12 @@ public class Universidad {
 
         // agregamos la Curso
         Curso nuevaCurso = new Curso(id, materia, cicloLectivo, turno);
-        Cursoes.add(nuevaCurso);
+        Cursos.add(nuevaCurso);
     }
 
     // validacion
     private boolean existeCursoConParametros(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
-        for (Curso Curso : Cursoes) {
+        for (Curso Curso : Cursos) {
             if (Curso.getMateria().equals(materia) &&
                     Curso.getCicloLectivo().equals(cicloLectivo) &&
                     Curso.getTurno().equals(turno)) {
@@ -156,8 +156,15 @@ public class Universidad {
         Curso cursoEncontrado = obtenerCurso(codigoCurso);
         if (cursoEncontrado == null) {
             System.out.println("No existe el Curso");
+            return false;
         }
-        
+        if(tieneCorrelativasAprobadas == null){
+            return false;
+        }
+
+        if (!curso.puedeInscribir(alumno)) {
+            return false;
+        }
         return true;
     }
 
