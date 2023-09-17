@@ -6,11 +6,11 @@ import java.util.List;
 public class Alumno extends Persona{
 	
 	private LocalDate fechaIngreso;
-	private Integer dni;
+	private int dni;
 	private List<Materia> materias;
 
 
-	public Alumno(String nombre, String apellido, Integer id, LocalDate fechaNac, LocalDate fechaIngreso, Integer dni) {
+	public Alumno(String nombre, String apellido, int id, LocalDate fechaNac, LocalDate fechaIngreso, int dni) {
 		super(nombre, apellido, id, fechaNac);
 		this.fechaIngreso=fechaIngreso;
 		this.dni=dni;
@@ -69,11 +69,11 @@ public class Alumno extends Persona{
 		this.fechaIngreso = fechaIngreso;
 	}
 
-	public Integer getDni() {
+	public int getDni() {
 		return dni;
 	}
 
-	public void setDni(Integer dni) {
+	public void setDni(int dni) {
 		this.dni = dni;
 	}
 

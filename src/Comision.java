@@ -1,17 +1,21 @@
 
-public class Curso {
+public class Comision {
 	
-	private Integer id;
+	private int id;
 	private Materia materia;
 	private CicloLectivo cicloLectivo;
 	private EnumTurno turno;
+	private int capacidadAula;
+	private int alumnosInscritos;
 	
 	
-	public Curso(Integer id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
+	public Comision(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno, int capacidadAula, int alumnosInscritos) {
 		this.id = id;
 		this.materia = materia;
 		this.cicloLectivo = cicloLectivo;
 		this.turno = turno;
+		this.capacidadAula=capacidadAula;
+		this.alumnosInscritos=alumnosInscritos;
 	}
 	
 	public boolean puedeInscribir(Alumno alumno) {
@@ -24,11 +28,18 @@ public class Curso {
         }
     }
 
+	public boolean excedeCapacidadAula() {
+		int capacidadAula = this.capacidadAula;
+		int alumnosInscritos = this.alumnosInscritos;
+		return alumnosInscritos >= capacidadAula;
+	}
+	
 
-	public Integer getId() {
+
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public Materia getMateria() {

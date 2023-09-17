@@ -1,22 +1,23 @@
 
 public class Aula {
-	private Integer id;
-	private Integer cantDeAlumnos;
+	private int id;
+	private int cantDeAlumnos;
 	
-	public Aula(Integer id, Integer cantDeAlumnos) {
+	public Aula(int id, int cantDeAlumnos) {
 		this.id = id;
 		this.cantDeAlumnos = cantDeAlumnos;
 	}
-	public Integer getId() {
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	public Integer getCantDeAlumnos() {
+	public int getCantDeAlumnos() {
 		return cantDeAlumnos;
 	}
-	public void setCantDeAlumnos(Integer cantDeAlumnos) {
+	public void setCantDeAlumnos(int cantDeAlumnos) {
 		this.cantDeAlumnos = cantDeAlumnos;
 	}
 }

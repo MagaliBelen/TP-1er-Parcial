@@ -3,11 +3,11 @@ import java.util.List;
 
 public class Materia {
 	private String nombre;
-	private Integer id;
+	private int id;
 	private List<Materia> materiasCorrelativas;
 	private List<Nota> notas;
 	
-	public Materia(String nombre, Integer id) {
+	public Materia(String nombre, int id) {
 		this.nombre = nombre;
 		this.id = id;
 		materiasCorrelativas = new ArrayList<Materia>();
@@ -18,7 +18,7 @@ public class Materia {
         return materiasCorrelativas.add(materia);
     }
 
-    public boolean existeCorrelativa(Integer id) {
+    public boolean existeCorrelativa(int id) {
         for (Materia m : materiasCorrelativas) {
             if (id.equals(m.getId())) {
                 return true;
@@ -27,7 +27,7 @@ public class Materia {
         return false;
     }
 
-    private Integer indexCorrelativa(Integer id) {
+    private int indexCorrelativa(int id) {
         for (int i = 0; i < materiasCorrelativas.size(); i++) {
             Materia m = materiasCorrelativas.get(i);
             if (id.equals(m.getId())) {
@@ -37,7 +37,7 @@ public class Materia {
         return -1;
     }
 
-	  public boolean eliminarCorrelativa(Integer idMateriaEliminar) {
+	  public boolean eliminarCorrelativa(int idMateriaEliminar) {
         return false;
     }
 	
@@ -59,10 +59,10 @@ public class Materia {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public List<Materia> getMateriasCorrelativas() {

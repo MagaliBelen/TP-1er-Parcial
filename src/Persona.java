@@ -3,10 +3,10 @@ import java.time.LocalDate;
 public class Persona {
 	private String nombre;
     private String apellido;
-    private Integer id;
+    private int id;
     private LocalDate fechaNac;
     
-	public Persona(String nombre, String apellido, Integer id, LocalDate fechaNac) {
+	public Persona(String nombre, String apellido, int id, LocalDate fechaNac) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.id = id;
@@ -30,10 +30,10 @@ public class Persona {
 	public void setFechaNac(LocalDate fechaNac) {
 		this.fechaNac = fechaNac;
 	}
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	} 
 }

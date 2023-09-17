@@ -6,14 +6,14 @@ public class Universidad {
     private List<Materia> materias;
     private List<Alumno> alumnos;
     private List<CicloLectivo> ciclosLectivos;
-    private List<Curso> Cursoes;
+    private List<Comision> comisiones;
     private List<Profesor> profesores;
 
     public Universidad() {
         this.materias = new ArrayList<>();
         this.alumnos = new ArrayList<>();
         this.ciclosLectivos = new ArrayList<>();
-        this.Cursoes = new ArrayList<>();
+        this.comisiones = new ArrayList<>();
         this.profesores = new ArrayList<>();
     }
 
@@ -40,8 +40,8 @@ public class Universidad {
     }
 
     // Agregar Alumno
-    public void AgregarAlumno(String nombre, String apellido, Integer id, LocalDate fechaNac, LocalDate fechaIngreso,
-            Integer dni) {
+    public void AgregarAlumno(String nombre, String apellido, int id, LocalDate fechaNac, LocalDate fechaIngreso,
+            int dni) {
         // Validar id único
         if (existeAlumnoConId(id)) {
             System.out.println("Ya existe un alumno con el mismo ID");
@@ -85,25 +85,25 @@ public class Universidad {
         return false;
     }
 
-    // Crear Curso
-    public void CrearCurso(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
+    // Crear Comision
+    public void CrearComision(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
         // Validar que no exista otra Comisión con los mismos parámetros
-        if (existeCursoConParametros(id, materia, cicloLectivo, turno)) {
+        if (existeComisionConParametros(id, materia, cicloLectivo, turno)) {
             System.out.println("Ya existe una comisión con la misma materia, ciclo lectivo y turno");
             return;
         }
 
-        // agregamos la Curso
-        Curso nuevaCurso = new Curso(id, materia, cicloLectivo, turno);
-        Cursos.add(nuevaCurso);
+        // agregamos la Comision
+        Comision nuevaComision = new Comision(id, materia, cicloLectivo, turno);
+        comisiones.add(nuevaComision);
     }
 
     // validacion
-    private boolean existeCursoConParametros(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
-        for (Curso Curso : Cursos) {
-            if (Curso.getMateria().equals(materia) &&
-                    Curso.getCicloLectivo().equals(cicloLectivo) &&
-                    Curso.getTurno().equals(turno)) {
+    private boolean existeComisionConParametros(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
+        for (Comision Comision : comisiones) {
+            if (Comision.getMateria().equals(materia) &&
+                    Comision.getCicloLectivo().equals(cicloLectivo) &&
+                    Comision.getTurno().equals(turno)) {
                 return true;
             }
         }
@@ -132,7 +132,7 @@ public class Universidad {
     }
 
     // Eliminamos la correlativa
-    public boolean eliminarCorrelativa(Materia m, Integer idMateriaEliminar) {
+    public boolean eliminarCorrelativa(Materia m, int idMateriaEliminar) {
         if (m.getId().equals(idMateriaEliminar)) {
             System.out.println("Una materia no puede ser correlativa de la misma materia");
             return false;
@@ -146,34 +146,40 @@ public class Universidad {
     }
 
     // Inscribir alumno
-    // Verificar que el alumno y el curso este dado de alta
-    public boolean inscribirAlumnoACurso(Integer id, Integer codigoCurso) {
+    // Verificar que el alumno y el Comision este dado de alta
+    public boolean inscribirAlumnoAComision(int id, int codigoComision) {
         Alumno aluEncontrado = obtenerAlumno(id);
         if (aluEncontrado == null) {
-            System.out.println("No existe el alumno!");
+           //No existe el alumno!
             return false;
         }
-        Curso cursoEncontrado = obtenerCurso(codigoCurso);
-        if (cursoEncontrado == null) {
-            System.out.println("No existe el Curso");
+        Comision ComisionEncontrado = obtenerComision(codigoComision);
+        if (ComisionEncontrado == null) {
+            //No existe el Comision
             return false;
         }
-        if(tieneCorrelativasAprobadas == null){
+        if(alumnos.tieneCorrelativasAprobadas()){
+           //no tiene correlativas aprobadas
             return false;
         }
 
-        if (!curso.puedeInscribir(alumno)) {
+        if (!ComisionEncontrado.puedeInscribir(alumnos)) {
+            //no se pudo inscribir
             return false;
         }
-        return true;
+        if (ComisionEncontrado.excedeCapacidadAula()) {
+            return false;
+        }
+
+        return true; //se inscribio el alumno
     }
 
-    private Alumno obtenerAlumno(Integer id) {
+    private Alumno obtenerAlumno(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
                                                                        // Tools | Templates.
     }
 
-    private Curso obtenerCurso(Integer codigoCurso) {
+    private Comision obtenerComision(int codigoComision) {
         throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
                                                                        // Tools | Templates.
     }
